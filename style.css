@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+
+header h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.totals {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.totals div {
+    text-align: center;
+    padding: 10px;
+}
+
+.totals span {
+    display: block;
+    font-size: 14px;
+    color: #666;
+}
