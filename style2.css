@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 400px;
+    background-color: #fff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.switch-button {
+    padding: 10px 20px;
+    background-color: #00A36C;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.red-button {
+    background-color: #FF0000;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.icon-scroll-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.icon {
+    font-size: 40px;
+    color: gray;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icon.selected,
+.icon.active-icon {
+    color: #00A36C;
+    transform: scale(1.2);
+}
+
+.input-section {
+    margin-top: 20px;
+}
+
+.input-fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.small-input {
+    width: 48%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.controls {
+    margin-top: 30px;
+}
+
+.big-red-button,
+.big-green-button {
+    padding: 15px;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.big-red-button {
+    background-color: #FF0000;
+}
+
+.big-green-button {
+    background-color: #00A36C;
+}

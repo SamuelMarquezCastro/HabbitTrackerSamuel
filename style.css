@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 400px;
     margin: 0 auto;
     padding: 20px;
+    max-width: 400px;
     background-color: #fff;
 }
 
@@ -20,11 +20,62 @@ header h1 {
 
 .totals div {
     text-align: center;
-    padding: 10px;
 }
 
 .totals span {
     display: block;
     font-size: 14px;
     color: #666;
+}
+
+.transaction-box {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.transaction-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.transaction-box li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.transaction-box li:last-child {
+    border-bottom: none;
+}
+
+.transaction-box i {
+    margin-right: 10px;
+}
+
+.transaction-box li.spent span:last-child {
+    color: red;
+}
+
+.transaction-box li.income span:last-child {
+    color: #00A36C;
+}
+
+.controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.trackMoneyButton {
+    padding: 15px 30px;
+    background-color: #00A36C;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 75%;
 }
