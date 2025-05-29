@@ -91,3 +91,23 @@ header {
 .big-green-button {
     background-color: #00A36C;
 }
+
+.icon-scroll-container {
+    display: flex;
+    flex-direction: column;
+    height: 150px; 
+    overflow-y: scroll;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .icon {
+    font-size: 40px;
+    cursor: pointer;
+    color: gray;
+  }
+  
+  .icon.selected {
+    color: #00b37e; 
+  }
+  
