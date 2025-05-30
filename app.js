@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Spent toevoegen
     const addSpentButton = document.getElementById('addChangesButton');
     if (addSpentButton && !addSpentButton.classList.contains('big-green-button')) {
         addSpentButton.addEventListener('click', () => {
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
- 
+
     const addEarningsButton = document.getElementById('addChangesButton');
     if (addEarningsButton && addEarningsButton.classList.contains('big-green-button')) {
         addEarningsButton.addEventListener('click', () => {
@@ -105,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    
+
     const switchButtons = document.querySelectorAll('.switch-button');
     switchButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -117,19 +116,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-  
+    
+    const backButton = document.querySelector('.back-button');
+if (backButton) {
+    backButton.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+}
+
+
+
     const icons = document.querySelectorAll('.icon-container i');
     icons.forEach(icon => {
         icon.addEventListener('click', () => {
-           
+
             icons.forEach(i => i.classList.remove('active-icon'));
-            
+
             icon.classList.add('active-icon');
-            
+
             selectedIconClass = icon.getAttribute('data-icon');
         });
     });
 
-    
+
     displayTransactions();
 });
