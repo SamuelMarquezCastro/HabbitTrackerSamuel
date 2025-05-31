@@ -1,7 +1,25 @@
+let storedDate = localStorage.getItem('selectedDate');
+let currentDate = storedDate ? new Date(storedDate) : new Date();
+
+function formatMonthYearKey(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    return `${year}-${month}`;
+}
+
+function formatMonthYearLabel(date) {
+    const formatter = new Intl.DateTimeFormat('nl-NL', { month: 'long', year: 'numeric' });
+    return formatter.format(date);
+}
+
 let selectedIconClass = null;
 
 function saveTransaction(type, name, amount, iconClass) {
-    let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    const storedDate = localStorage.getItem('selectedDate');
+    const date = storedDate ? new Date(storedDate) : new Date();
+
+    const key = `transactions-${formatMonthYearKey(date)}`;
+    let transactions = JSON.parse(localStorage.getItem(key)) || [];
     transactions.push({
         type: type,
         name: name,
@@ -9,11 +27,12 @@ function saveTransaction(type, name, amount, iconClass) {
         icon: iconClass || null,
         date: new Date().toISOString()
     });
-    localStorage.setItem('transactions', JSON.stringify(transactions));
+    localStorage.setItem(key, JSON.stringify(transactions));
 }
 
 function getTransactions() {
-    return JSON.parse(localStorage.getItem('transactions')) || [];
+    const key = `transactions-${formatMonthYearKey(currentDate)}`;
+    return JSON.parse(localStorage.getItem(key)) || [];
 }
 
 function calculateTotals() {
@@ -71,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const trackMoneyButton = document.querySelector('.trackMoneyButton');
     if (trackMoneyButton) {
         trackMoneyButton.addEventListener('click', () => {
+            localStorage.setItem('selectedDate', currentDate.toISOString()); // Belangrijk
             window.location.href = 'spent.html';
         });
     }
@@ -89,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
     const addEarningsButton = document.getElementById('addChangesButton');
     if (addEarningsButton && addEarningsButton.classList.contains('big-green-button')) {
         addEarningsButton.addEventListener('click', () => {
@@ -104,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
     const switchButtons = document.querySelectorAll('.switch-button');
     switchButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -116,28 +134,51 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    
+    const currentMonthYearElement = document.getElementById('current-month-year');
+    const prevMonthButton = document.getElementById('prev-month');
+    const nextMonthButton = document.getElementById('next-month');
+
+    function updateMonthDisplay() {
+        if (currentMonthYearElement) {
+            currentMonthYearElement.textContent = formatMonthYearLabel(currentDate);
+            localStorage.setItem('selectedDate', currentDate.toISOString()); // Zorg dat dit altijd wordt bijgewerkt
+            displayTransactions();
+        }
+    }
+
+    if (prevMonthButton && nextMonthButton) {
+        prevMonthButton.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            updateMonthDisplay();
+        });
+
+        nextMonthButton.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            updateMonthDisplay();
+        });
+    }
+
+    updateMonthDisplay();
+
     const backButton = document.querySelector('.back-button');
-if (backButton) {
-    backButton.addEventListener('click', () => {
-        window.location.href = 'index.html';
-    });
-}
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    }
 
-
+    if (!localStorage.getItem('selectedDate')) {
+        localStorage.setItem('selectedDate', new Date().toISOString());
+    }
 
     const icons = document.querySelectorAll('.icon-container i');
     icons.forEach(icon => {
         icon.addEventListener('click', () => {
-
             icons.forEach(i => i.classList.remove('active-icon'));
-
             icon.classList.add('active-icon');
-
             selectedIconClass = icon.getAttribute('data-icon');
         });
     });
-
 
     displayTransactions();
 });

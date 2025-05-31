@@ -111,3 +111,15 @@ header {
     color: #00b37e; 
   }
   
+  .back-button {
+    margin-top: 10px;
+    background-color: #ccc;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    display: block;
+
+}
